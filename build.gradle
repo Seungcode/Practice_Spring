@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+	//기본 라이브러리 -> 기본 + 테스트
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
