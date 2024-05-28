@@ -9,23 +9,28 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+//설정정보라는 뜻
+@Configuration
 public class AppConfig {
-
+    //사용시 Bean Contaioner에 등록
+    @Bean
     //생성자 주입
     public MemberService memberService(){
         return new MemberServiceImpl(MemberRepository());
     }
-
-    private static MemoryMemberRepository MemberRepository() {
+    @Bean
+    public static MemoryMemberRepository MemberRepository() {
         return new MemoryMemberRepository();
     }
-
+    @Bean
     public OrderService orderService(){
         return new OrderServiceImpl(MemberRepository(), DiscountPolicy());
     }
-
-    private static DiscountPolicy DiscountPolicy() {
+    @Bean
+    public static DiscountPolicy DiscountPolicy() {
         return new RateDiscountPolicy();
     }
 }
