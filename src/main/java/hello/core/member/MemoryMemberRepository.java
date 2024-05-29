@@ -1,8 +1,11 @@
 package hello.core.member;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 //test용 구현 -> 추후 디비가 정해지면 그걸로 바꿔주기
 public class MemoryMemberRepository implements MemberRepository{
 
