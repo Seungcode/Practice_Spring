@@ -6,17 +6,22 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+//final 붙은 애들로 생성자 만들어줌
+//@RequiredArgsConstructor
+
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     //인터페이스에만 의존하기 위한 변 -> 오잉 그러면 전 뭐가 되는 걸까 -> 누군가 구현 객체를 알아서 생성하고 주입해줘야한다! -> AppConfig
     private final DiscountPolicy discountPolicy;
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy){
+    public OrderServiceImpl(MemberRepository memberRepository,@Qualifier("fixDiscountPolicy") DiscountPolicy discountPolicy){
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
